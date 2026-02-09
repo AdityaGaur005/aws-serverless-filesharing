@@ -51,7 +51,7 @@
 
         try {
           // Step 1: Get the presigned upload URL
-          const uploadRes = await fetch("https://t01cm5dmbi.execute-api.ap-south-1.amazonaws.com/uploads", {
+          const uploadRes = await fetch("your_api/uploads", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -83,7 +83,7 @@
           }
 
           // Step 3: Get download link using fileKey
-          const downloadRes = await fetch("https://t01cm5dmbi.execute-api.ap-south-1.amazonaws.com/download", {
+          const downloadRes = await fetch("your_api/download", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
