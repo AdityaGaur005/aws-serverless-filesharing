@@ -1,10 +1,14 @@
-# 🚀 Serverless File Sharing Portal
+<img width="1536" height="1024" alt="ChatGPT Image Jun 5, 2026, 01_40_15 AM" src="https://github.com/user-attachments/assets/0135ea80-27af-4014-824a-2a41ae4e2fff" /># 🚀 Serverless File Sharing Portal
 
 A secure, scalable, and fully serverless file-sharing platform built on AWS. Users can upload files, generate secure shareable links, and access files through shortened URLs without managing any backend servers.
 
 This project demonstrates modern cloud-native architecture using AWS services including Lambda, API Gateway, S3, and DynamoDB.
 
 ---
+
+## 🏗️ Architecture Diagram
+<img width="1536" height="1024" alt="sharebuddy_flowdiagram" src="https://github.com/user-attachments/assets/6952dfa3-1fdf-4bc1-8a17-f5e2d56c2556" />
+
 
 ## 📌 Features
 
