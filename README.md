@@ -1,4 +1,4 @@
-<img width="1536" height="1024" alt="ChatGPT Image Jun 5, 2026, 01_40_15 AM" src="https://github.com/user-attachments/assets/0135ea80-27af-4014-824a-2a41ae4e2fff" /># 🚀 Serverless File Sharing Portal
+# 🚀 Serverless File Sharing Portal
 
 A secure, scalable, and fully serverless file-sharing platform built on AWS. Users can upload files, generate secure shareable links, and access files through shortened URLs without managing any backend servers.
 
