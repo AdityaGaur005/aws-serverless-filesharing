@@ -1,0 +1,65 @@
+import json
+import boto3
+
+# AWS Clients
+dynamodb = boto3.resource("dynamodb")
+s3 = boto3.client("s3")
+
+# Constants
+TABLE_NAME = "FileMappings"
+BUCKET_NAME = "filesharing-thisside"
+
+# DynamoDB Table
+table = dynamodb.Table(TABLE_NAME)
+
+
+def lambda_handler(event, context):
+    try:
+
+        # Read shortCode from URL path
+        short_code = event["pathParameters"]["shortCode"]
+
+        # Lookup in DynamoDB
+        response = table.get_item(
+            Key={
+                "shortCode": short_code
+            }
+        )
+
+        item = response.get("Item")
+
+        if not item:
+            return {
+                "statusCode": 404,
+                "body": "Short code not found"
+            }
+
+        file_key = item["fileKey"]
+
+        filename = file_key.split("/")[-1]
+
+        # Generate download URL
+        download_url = s3.generate_presigned_url(
+            ClientMethod="get_object",
+            Params={
+                "Bucket": BUCKET_NAME,
+                "Key": file_key,
+                "ResponseContentDisposition":
+                    f'attachment; filename="{filename}"'
+            },
+            ExpiresIn=600
+        )
+
+        # Redirect browser automatically
+        return {
+            "statusCode": 302,
+            "headers": {
+                "Location": download_url
+            }
+        }
+
+    except Exception as e:
+        return {
+            "statusCode": 500,
+            "body": str(e)
+        }
