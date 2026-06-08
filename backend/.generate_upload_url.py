@@ -31,7 +31,21 @@ def lambda_handler(event, context):
     try:
         # Parse request body
         body = json.loads(event.get("body", "{}"))
+        MAX_SIZE = 100 * 1024 * 1024  # 100 MB
 
+        filesize = int(body.get("filesize", 0))
+
+        if filesize > MAX_SIZE:
+            return {
+            "statusCode": 400,
+            "body": json.dumps({
+            "error": "Maximum file size is 100 MB"
+            }),
+            "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+            }
+    }
         filename = body.get("filename")
         content_type = body.get(
             "contentType",
